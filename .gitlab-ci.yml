@@ -1,0 +1,9 @@
+sonar:
+    script: ./build.sh && sonar-scanner -Dsonar.projectKey=flatcraft_$CI_PROJECT_NAMESPACE
+    stage: build
+    tags:
+     - sonar
+     - java
+    artifacts:
+     paths:
+        - flatcraft.jar

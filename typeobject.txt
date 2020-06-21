@@ -1,0 +1,50 @@
+@startuml typeobject.png
+hide empty members
+
+class Type {
+
+  Instance newInstance()
+}
+
+class Instance
+
+Instance -left-> Type : type
+@enduml
+
+@startuml typecraft.png
+hide empty members
+
+interface MineElement {
+    MineElementInstance newInstance()
+}
+class Tool implements MineElement {
+     int initialLife
+     ToolInstance newInstance()
+}
+class Resource implements MineElement {
+     ResourceInstance newInstance()
+}
+
+interface MineElementInstance {
+     MineElement getType();
+}
+
+class ToolInstance implements MineElementInstance {
+      int remainingLife
+}
+
+class ResourceInstance implements MineElementInstance
+
+
+MineElementInstance -left-> MineElement : type
+
+ToolInstance -left-> Tool : type
+
+ResourceInstance -left-> Resource : type 
+
+class ResourceContainer {
+      int quantity
+}
+ResourceContainer -left-> Resource : type
+
+@enduml
